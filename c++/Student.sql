@@ -1,11 +1,11 @@
-#CREATE DATABASE Student;
+CREATE DATABASE Student;
 
-#USE Student;
+USE Student;
 
 CREATE TABLE Info
 (
     id CHAR(8) NOT NULL,
-    name CHAR(10) NOT NULL,
+    name CHAR(50) NOT NULL,
     CLanguage INT DEFAULT 0,
     DataStruct INT DEFAULT 0,
     DB INT DEFAULT 0,

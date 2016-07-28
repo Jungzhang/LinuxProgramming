@@ -36,7 +36,6 @@ bool myDB::connectDB(const std::string host, const std::string user, const std::
                 const std::string db, const unsigned int port, const std::string unix_socket, const unsigned int flag)
 {
     if (!mysql_real_connect(client, host.c_str(), user.c_str(), passwd.c_str(), db.c_str(), port, unix_socket.c_str(), flag)) {
-        std::cerr << "The database connect failed:" << mysql_error(client) << std::endl;
         return false;
     }
 
@@ -47,7 +46,6 @@ bool myDB::connectDB(const std::string host, const std::string user, const std::
                 const std::string db, const unsigned int port, const unsigned int flag)
 {
     if (!mysql_real_connect(client, host.c_str(), user.c_str(), passwd.c_str(), db.c_str(), port, NULL, flag)) {
-        std::cerr << "The database connect failed:" << mysql_error(client) << std::endl;
         return false;
     }
 
@@ -63,12 +61,10 @@ bool myDB::useSqlQuery(const std::string sql)
     }
 
     if (mysql_real_query(client, sql.c_str(), sql.size())) {
-        std::cerr << "query failed:" << mysql_error(client) << std::endl;
         return false;
     }
 
     if ((resource = mysql_store_result(client)) == nullptr) {
-        std::cerr << "store failed:" << mysql_error(client) << std::endl;
         return false;
     }
 
@@ -79,7 +75,6 @@ bool myDB::useSqlQuery(const std::string sql)
 bool myDB::useSqlModify(const std::string sql)
 {
     if (mysql_real_query(client, sql.c_str(), sql.size())) {
-        std::cerr << "modify failed:" << mysql_error(client) << std::endl;
         return false;
     }
 
@@ -91,7 +86,11 @@ int myDB::loadRowResult()
 {
     if (resource) {
         row = mysql_fetch_row(resource);
-        return 1;
+        if (row != nullptr) { 
+            return 1;
+        } else {
+            return 0;
+        }
     } else {
         return 0;
     }

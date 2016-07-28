@@ -12,6 +12,8 @@
 
 class Student {
 public :
+    Student(const std::string id, const std::string name, const int Clanguage, 
+            const int DataStruct, const int DB);
     Student() = default;
     int AddStuInfo(Student stu);
     int DelStuInfo(const std::string id);
@@ -19,12 +21,12 @@ public :
     int ShowStuInfo(const std::string id, Student &result);
     int ShowAllInfo(std::vector<Student> &result);
     int ShowSortScore(std::vector<Student> &result);
-private:
+public :
     int Clanguage;
     int DataStruct;
     int DB;
     unsigned int TotalScore;
-    unsigned double AverScore;
+    double AverScore;
     std::string id;
     std::string name;
 };
