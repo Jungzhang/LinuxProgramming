@@ -15,12 +15,13 @@
 #include <unistd.h>
 
 #define MAXCLIENT 65535
+#define BUFF_SIZE 255
 
 int main(int argc, char *argv[])
 {
     int new_fd, listen_fd, epoll_fd;
     int on = 1, retuval, cli_addr_len, recv_len, count = 0;
-    char buf[255];
+    char buf[BUFF_SIZE];
     struct sockaddr_in serv_addr, cli_addr; //定义套接字地址
     struct epoll_event events[MAXCLIENT], event;
 
@@ -71,14 +72,14 @@ int main(int argc, char *argv[])
     while (1) {
         retuval = epoll_wait(epoll_fd, events, MAXCLIENT, -1);
         if (retuval == -1) {
-            perror("select");
+            perror("epoll_wait");
             return EXIT_FAILURE;
         } else if (retuval > 0) {
             for (int i = 0; i < retuval; ++i) {
                 if (events[i].events & EPOLLIN) {
                     if (events[i].data.fd != listen_fd) {
-                        memset(buf, 0, 255);
-                        recv_len = recv(events[i].data.fd, buf, 255, 0);
+                        memset(buf, 0, BUFF_SIZE);
+                        recv_len = recv(events[i].data.fd, buf, BUFF_SIZE-1, 0);
                         if (recv_len > 0) {
                             printf("客户端发数据啦~~\n");
                             printf("%s", buf);
