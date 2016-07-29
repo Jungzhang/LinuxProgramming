@@ -17,11 +17,8 @@ void print(int sg)
 
 int main(int argc, char *argv[])
 {
-
     while(1) {
         signal(SIGINT, print);
-        printf("Hello World\n");
-        sleep(1);
     }
 
     return EXIT_SUCCESS;
