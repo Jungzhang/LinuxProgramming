@@ -89,9 +89,7 @@ int main(int argc, char *argv[])
                             errno = 0;
                             recv_len = recv(events[i].data.fd, buf, BUFF_SIZE-1, 0);
                             if (recv_len > 0) {
-                                fprintf(stderr, "输出了\n");
                                 printf("%s", buf);
-                                //fflush(stdout);
                             } else if(recv_len == 0) {
                                 --count;
                                 printf("客户端断啦~~\n");
