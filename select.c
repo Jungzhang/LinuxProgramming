@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     
     FD_ZERO(&readfds);
     FD_SET(listen_fd, &readfds);
-    tmpfds = readfds;
+    tmpfds = readfds; 
 
     //加入监控集合
     while (1) {
