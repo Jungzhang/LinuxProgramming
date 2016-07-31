@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     }
 
     //将套接字转化为监听套接字
-    if (listen(listen_fd, 256) < 0) {
+    if (listen(listen_fd, 5) < 0) {
         perror("Listen");
         return EXIT_FAILURE;
     }
