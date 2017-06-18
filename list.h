@@ -3,7 +3,7 @@
  * Email	 : zhanggen.jung@gmail.com
  * Last modified : 2015-08-07 13:54
  * Filename	 : list.h
- * Description	 : 链表相关操作。
+ * Description	 : 链表相关操作
  * *****************************************************************************/
 #include <stdlib.h>
 
