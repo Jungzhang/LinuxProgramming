@@ -3,9 +3,10 @@
  * Email	 : zhanggen.jung@gmail.com
  * Last modified : 2015-08-07 13:54
  * Filename	 : list.h
- * Description	 : 链表相关操作
+ * Description	 : 链表相关操作。
  * *****************************************************************************/
 #include <stdlib.h>
+
 
 //创建一个链表,传进来头指针和结点类型
 #define list_creat(pHead, node_type){						\
